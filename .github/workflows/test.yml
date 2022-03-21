@@ -15,7 +15,7 @@ jobs:
         id: get_version
         run: |
           echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
-          sed -i '' 's/0.0.8/0.0.7/' ./TestCocoaPods_test_private.podspec
+          sed -i '' 's/0.0.7/${{ steps.get_version.outputs.VERSION }}/' ./TestCocoaPods_test_private.podspec
       - name: Commit
         run: |
           # Stage the file, commit and push
