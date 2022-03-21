@@ -16,7 +16,7 @@ Pod::Spec.new do |oldSpec|
   #
 
   oldSpec.name         = "TestCocoaPods_test_private"
-  oldSpec.version = "0.0.2"
+  oldSpec.version = "0.0.7"
   oldSpec.summary      = "A short description of TestCocoaPods."
 
  
