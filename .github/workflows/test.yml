@@ -1,19 +1,16 @@
-name: CreateFramework
+name: Release
+
 on:
   push:
-    branches:
-    - master
+    tags:
+      - "[0-9]+.[0-9]+.[0-9]+*"
+
+
 jobs:
-  build:
-    name: Build XCFramework
-    runs-on: ubuntu-latest
+  check-version:
+    runs-on: macOS-11
     steps:
-     - name: Extract tag name
-       id: tag
-       uses: actions/checkout@master
-       with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            return context.payload.ref.replace(/\/refs\/tags\//, '');
-     - name: Echo
-       run: echo ${{ steps.tag.outputs.result }}
+      - uses: actions/checkout@v2
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
