@@ -22,10 +22,11 @@ jobs:
       - name: Commit
         run: |
           # Stage the file, commit and push
-          git remote -v
+
+          git checkout master
           git add .
           git commit -m "Added framework"
-          git push -u origin master
+          git push origin master --force
           
         
         
