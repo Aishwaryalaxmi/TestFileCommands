@@ -16,12 +16,15 @@ jobs:
         run: |
           echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
           sed -i '' 's/0.0.7/${{ steps.get_version.outputs.VERSION }}/' ./TestCocoaPods_test_private.podspec
+      - name: Update pod file
+        run: |
+          sed -i '' 's/0.0.7/${{ steps.get_version.outputs.VERSION }}/' ./TestCocoaPods_test_private.podspec
       - name: Commit
         run: |
           # Stage the file, commit and push
           git add .
           git commit -m "Added framework"
-          git push
+          git push -u origin master
       - name: Github Release
         id: create_release
         uses: actions/create-release@v1.0.1
