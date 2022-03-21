@@ -21,6 +21,7 @@ jobs:
           echo ${GITHUB_REF##*/}
           echo ${GITHUB_REF#refs/*/}
           echo ${{ github.ref_name}}
+          echo ${{ github.event.release.tag_name }}
       - name: Extract tag name
         id: tag
         uses: actions/github-script@0.2.0
