@@ -15,7 +15,7 @@ jobs:
         id: get_version
         run: |
           echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
-          echo #VERSION
+          sed -i '' 's/${{ steps.get_version.outputs.VERSION }}/0.0.7/' ./TestCocoaPods_test_private.podspec
       - name: Github Release
         id: create_release
         uses: actions/create-release@v1.0.1
