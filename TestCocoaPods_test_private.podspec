@@ -42,6 +42,8 @@ Test Description
 
   oldSpec.source       = { :http => "https://www.dropbox.com/s/n2ih9ok2fifgowd/TestCocoaPods.zip?dl=1" }
   oldSpec.exclude_files = "Classes/Exclude"
+  
+  
 
 
 
