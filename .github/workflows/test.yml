@@ -6,21 +6,25 @@ on:
       - 'master'
 
 jobs:
-   get-previous-tag:
-    name: Test Get Previous Tag on ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os:
-          - ubuntu-latest
-          - windows-latest
-          - macos-latest
-    runs-on: ${{ matrix.os }}
+   check-version:
+    runs-on: macOS-11
     steps:
       - uses: actions/checkout@master
-      - name: 'Get Previous tag'
-        id: previoustag
-        uses: ./
-      - run: |
-          echo "${{ steps.previoustag.outputs.tag }}"
+      - name: Get the version
+        id: get_version
+        run: |
+          echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+          sed -i '' 's/0.0.7/${{ steps.get_version.outputs.VERSION }}/' ./TestCocoaPods_test_private.podspec
+      - name: Update pod file
+        run: |
+          sed -i '' 's/0.0.7/${{ steps.get_version.outputs.VERSION }}/' ./TestCocoaPods_test_private.podspec
+      - name: Commit
+        run: |
+          # Stage the file, commit and push
+
+          git checkout master
+          git add .
+          git commit -m "Added framework"
+          git push origin master --force
+
    
