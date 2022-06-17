@@ -8,13 +8,13 @@ jobs:
     runs-on: macOS-11
     steps:
       - uses: actions/checkout@master
-        if: contains(github.base_ref, 'master')
+        if: github.base_ref == 'refs/base/master'
       - name: base_ref master
         run: echo 'test_branch'
       - name: base_ref master 2
         run: echo 'test_branch 2'
         
-        if: contains(github.head_ref, 'test_branch')
+        if: github.head_ref, 'refs/head/test_branch'
       - name: head_ref release
         run: echo 'Master'
       - name: head_ref release 2
