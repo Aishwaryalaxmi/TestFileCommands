@@ -4,15 +4,15 @@ on:
   pull_request
 
 jobs:
-#    check-version:
-#     runs-on: macOS-11
-#     if: github.base_ref == 'refs/base/master'
-#     steps:
-#       - uses: actions/checkout@master
-#       - name: base_ref master
-#         run: echo 'test_branch'
-#       - name: base_ref master 2
-#         run: echo 'test_branch 2'
+   check-version:
+    runs-on: macOS-11
+    if: contains(github.base_ref, 'master'
+    steps:
+      - uses: actions/checkout@master
+      - name: base_ref master
+        run: echo 'test_branch'
+      - name: base_ref master 2
+        run: echo 'test_branch 2'
         
    job2:
     runs-on: macOS-11
