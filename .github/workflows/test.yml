@@ -16,7 +16,7 @@ jobs:
         
    job2:
     runs-on: macOS-11
-    if: github.head_ref == 'refs/head/dummy'
+    if: github.head_ref == 'refs/head/test_branch'
     steps:
       - name: head_ref release
         run: echo 'Master'
