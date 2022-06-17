@@ -14,7 +14,7 @@ jobs:
       - name: base_ref master 2
         run: echo 'test_branch 2'
         
-        if: github.head_ref == 'refs/head/test_branch'
+        if: github.head_ref == 'refs/head/dummy'
       - name: head_ref release
         run: echo 'Master'
       - name: head_ref release 2
