@@ -9,11 +9,11 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: base_ref master
-#         if: contains(github.base_ref, 'master')
-        run: echo ::set-output name=VERSION::${github.base_ref}
+        if: contains(github.base_ref, 'test_branch')
+        run: echo 'test_branch'
       - name: head_ref release
-#         if: contains(github.head_ref, 'release')
-        run: echo ::set-output name=VERSION::${github.head_ref}
+        if: contains(github.head_ref, 'master')
+        run: echo 'Master'
 #         run: |
 #           echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
 #       - name: Update pod file
