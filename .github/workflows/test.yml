@@ -6,7 +6,7 @@ on:
 jobs:
    check-version:
     runs-on: macOS-11
-    if: contains(github.base_ref, 'master'
+    if: contains(github.base_ref, 'master')
     steps:
       - uses: actions/checkout@master
       - name: base_ref master
