@@ -8,12 +8,17 @@ jobs:
     runs-on: macOS-11
     steps:
       - uses: actions/checkout@master
-      - name: base_ref master
         if: contains(github.base_ref, 'master')
+      - name: base_ref master
         run: echo 'test_branch'
+      - name: base_ref master 2
+        run: echo 'test_branch 2'
+        
+        if: contains(github.base_ref, 'test_branch')
       - name: head_ref release
-        if: contains(github.head_ref, 'test_branch')
         run: echo 'Master'
+      - name: head_ref release 2
+        run: echo 'Master 2'
 #         run: |
 #           echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
 #       - name: Update pod file
