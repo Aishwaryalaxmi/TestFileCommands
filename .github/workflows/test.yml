@@ -1,29 +1,31 @@
 name: Release
 
 on:
-  push:
-      tags:
-      - "[0-9]+.[0-9]+.[0-9]+*"
+  pull_request
 
 jobs:
    check-version:
     runs-on: macOS-11
     steps:
       - uses: actions/checkout@master
-      - name: Get the version
-        id: get_version
-        run: |
-          echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
-      - name: Update pod file
-        run: |
-          sed -i '' 's/0.0.7/${{ steps.get_version.outputs.VERSION }}/' ./TestCocoaPods_test_private.podspec
-      - name: Commit
-        run: |
-          # Stage the file, commit and push
+      - name: base_ref master
+#         if: contains(github.base_ref, 'master')
+        run: echo ::set-output name=VERSION::${github.base_ref}
+      - name: head_ref release
+#         if: contains(github.head_ref, 'release')
+        run: echo ::set-output name=VERSION::${github.head_ref}
+#         run: |
+#           echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+#       - name: Update pod file
+#         run: |
+#           sed -i '' 's/0.0.7/${{ steps.get_version.outputs.VERSION }}/' ./TestCocoaPods_test_private.podspec
+#       - name: Commit
+#         run: |
+#           # Stage the file, commit and push
 
-          git checkout master
-          git add .
-          git commit -m "Added framework"
-          git push origin master --force
+#           git checkout master
+#           git add .
+#           git commit -m "Added framework"
+#           git push origin master --force
 
    
