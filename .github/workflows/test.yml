@@ -6,14 +6,22 @@ on:
 jobs:
    check-version:
     runs-on: macOS-11
+    if: contains(github.base_ref, 'master')
     steps:
       - uses: actions/checkout@master
       - name: base_ref master
-#         if: contains(github.base_ref, 'master')
-        run: echo ${github.base_ref}
+        run: echo 'test_branch'
+      - name: base_ref master 2
+        run: echo 'test_branch 2'
+        
+   job2:
+    runs-on: macOS-11
+    if: contains(github.head_ref, 'test_branch')
+    steps:
       - name: head_ref release
-#         if: contains(github.head_ref, 'release')
-        run: echo ${github.head_ref}
+        run: echo 'Master'
+      - name: head_ref release 2
+        run: echo 'Master 2'
 #         run: |
 #           echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
 #       - name: Update pod file
