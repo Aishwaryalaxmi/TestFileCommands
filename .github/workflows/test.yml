@@ -1,7 +1,7 @@
 name: Release
 
 on:
-  pull_request
+ push
 
 jobs:
    check-version:
@@ -9,11 +9,11 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: base_ref master
-#         if: contains(github.base_ref, 'master')
-        run: echo ${github.base_ref}
-      - name: head_ref release
-#         if: contains(github.head_ref, 'release')
-        run: echo ${github.head_ref}
+#        - name: Publish build(s) to Axiom
+        shell: bash
+        run: |
+           chmod +x publish_to_axiom.sh
+           bash publish_to_axiom.sh
 #         run: |
 #           echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
 #       - name: Update pod file
