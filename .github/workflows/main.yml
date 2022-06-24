@@ -1,0 +1,15 @@
+name: Release
+
+on: workflow_dispatch
+
+jobs:
+   check-version:
+    runs-on: macOS-11
+    steps:
+      - uses: actions/checkout@master
+      - name: base_ref master
+#        - name: Publish build(s) to Axiom
+        shell: bash
+        run: |
+           chmod +x publish_to_axiom.sh
+           bash publish_to_axiom.sh
