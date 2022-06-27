@@ -16,10 +16,13 @@ jobs:
         run: |
            chmod +x publish_to_axiom.sh
            bash publish_to_axiom.sh
+           
+      - name: set env
+        run: echo "::set-env name=NOW::v$(date +'%Y%m%d.%H%M%S')"
 
       - name: Create Tag
         run: |
-          git tag -a 1.0.0 -m "tag message"
+          git tag -a ${{ env.NOW }} -m "tag message"
           git push --tags
 #         run: |
 #           echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
