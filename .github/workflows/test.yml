@@ -18,13 +18,14 @@ jobs:
            bash publish_to_axiom.sh
            
       - name: set env
+        id: vars
         run:  echo ::set-output name=tag::$(date +%Y%m%d.%H.%M)
 # echo "NOW=$(date +%Y%m%d.%H.%M)" >> $GITHUB_ENV
 
       - name: Create Tag
         run: |
           echo ${{ env.NOW }}
-          git tag -a ${{ env.NOW }} -m "tag message"
+          git tag -a ${{ steps.vars.outputs.tag }} -m "tag message"
           git push --tags
 #         run: |
 #           echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
