@@ -19,7 +19,7 @@ jobs:
            
       - name: set env
         id: vars
-        run:  echo ::set-output name=tag::$(TZ=Pacific Standard Time  date +%Y%m%d.%H.%M)
+        run:  echo ::set-output name=tag::$(TZ=PT  date +%Y%m%d.%H.%M)
 # echo "NOW=$(date +%Y%m%d.%H.%M)" >> $GITHUB_ENV
 
       - name: Create Tag
