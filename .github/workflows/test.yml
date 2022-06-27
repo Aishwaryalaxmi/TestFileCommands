@@ -1,6 +1,9 @@
 name: Release
 
-on: workflow_dispatch
+on:
+  push:
+    branches:    
+      - 'master'
 
 jobs:
    check-version:
@@ -13,6 +16,12 @@ jobs:
         run: |
            chmod +x publish_to_axiom.sh
            bash publish_to_axiom.sh
+
+      - name: Create Tag
+      - uses: rickstaa/action-create-tag@v1
+        with:
+          tag: "latest"
+          message: "Latest release"
 #         run: |
 #           echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
 #       - name: Update pod file
