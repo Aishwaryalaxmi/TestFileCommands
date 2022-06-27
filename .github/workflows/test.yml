@@ -23,8 +23,8 @@ jobs:
       - name: Create Tag
         run: |
           echo ${{ env.NOW }}
-     #      git tag -a ${{ env.NOW }} -m "tag message"
-      #    git push --tags
+          git tag -a ${{ env.NOW }} -m "tag message"
+          git push --tags
 #         run: |
 #           echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
 #       - name: Update pod file
