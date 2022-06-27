@@ -18,7 +18,7 @@ jobs:
            bash publish_to_axiom.sh
 
       - name: Create Tag
-      - uses: rickstaa/action-create-tag@v1
+        uses: rickstaa/action-create-tag@v1
         with:
           tag: "latest"
           message: "Latest release"
